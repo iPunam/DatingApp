@@ -36,7 +36,14 @@ namespace DatingApp.API.Controllers
 
             if (await _authRepository.UserExists(userForRegisterDto.UserName))
             {
-                return BadRequest("Username already exists");
+                ModelState.AddModelError("UserName", "Username already exists");
+                //var problemDetails = new ValidationProblemDetails(ModelState)
+                //{
+                //    Status = StatusCodes.Status400BadRequest,
+                //};
+                //return BadRequest(problemDetails);
+                return ValidationProblem(ModelState);
+                //return BadRequest("Username already exists");
             }
 
             User userToCreate = new User
