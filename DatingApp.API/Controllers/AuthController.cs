@@ -42,6 +42,7 @@ namespace DatingApp.API.Controllers
                 //    Status = StatusCodes.Status400BadRequest,
                 //};
                 //return BadRequest(problemDetails);
+                
                 return ValidationProblem(ModelState);
                 //return BadRequest("Username already exists");
             }
